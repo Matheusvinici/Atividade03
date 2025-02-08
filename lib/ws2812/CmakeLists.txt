@@ -1,0 +1,14 @@
+# CMakeLists.txt para a biblioteca WS2812
+add_library(ws2812 STATIC
+    ws2812.c
+    ws2812.pio
+)
+
+# Configura o PIO para gerar o cabeçalho ws2812.pio.h
+pico_generate_pio_header(ws2812 ${CMAKE_CURRENT_SOURCE_DIR}/ws2812.pio)
+
+# Inclui os diretórios necessários
+target_include_directories(ws2812 PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+
+# Vincula as bibliotecas necessárias
+target_link_libraries(ws2812 pico_stdlib hardware_pio)
